@@ -85,7 +85,7 @@
 \newcommand{\avatarurl}{https://media.licdn.com/dms/image/v2/D4D03AQGr6D7JQZfJGA/profile-displayphoto-crop_800_800/B4DZ5ZYsQaJQAM-/0/1779616106026?e=1790208000&v=beta&t=ChgQJ1kDRzcvgTQIMAsRWKyn3PoxO4kfjmERU9Ypu-0}
 
 % Descarga silenciosa mediante curl a un archivo temporal local
-\immediate\write18{curl -s -L -k "\avatarurl" -o avatar_temp.jpg}
+% \immediate\write18{curl -s -L -k "\avatarurl" -o avatar_temp.jpg}
 
 
 \begin{document}
@@ -121,14 +121,16 @@
     \vspace{0pt}
     \hspace{0.4cm}%
     \begin{minipage}[t]{5.2cm}
-        % Avatar circular dinámico
+        % Avatar circular más grande
         \begin{center}
             \begin{tikzpicture}
                 \begin{scope}
-                    \clip (0,0) circle (0.95cm);
-                    \node at (0,0) {\includegraphics[width=1.9cm, height=1.9cm, keepaspectratio=false]{avatar_temp.jpg}};
+                    % Aumentamos el radio a 1.3cm (diámetro = 2.6cm)
+                    \clip (0,0) circle (1.3cm);
+                    \node at (0,0) {\includegraphics[width=2.6cm, height=2.6cm, keepaspectratio=false]{avatar_temp.jpg}};
                 \end{scope}
-                \draw[accentblue, line width=2pt] (0,0) circle (0.95cm);
+                % Borde circular ajustado al nuevo radio
+                \draw[accentblue, line width=2.5pt] (0,0) circle (1.3cm);
             \end{tikzpicture}
         \end{center}
         \vspace{-6pt}
