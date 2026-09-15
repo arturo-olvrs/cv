@@ -1,105 +1,15 @@
 \documentclass[10pt, a4paper]{article}
 
-\usepackage[utf8]{inputenc}
-\usepackage{helvet}
-\renewcommand{\familydefault}{\sfdefault}
-\usepackage[margin=0cm]{geometry}
-\usepackage{xcolor}
-\usepackage{tikz}
-\usepackage{enumitem}
-\usepackage{hyperref}
-\usepackage{fontawesome5}
-
-% Paleta de colores Cátedra Telefónica - UGR
-\definecolor{headerbg}{HTML}{161E2E}     % Azul marino grafito muy oscuro
-\definecolor{sidebarbg}{HTML}{F8FAFC}    % Gris claro limpio para barra lateral
-\definecolor{accentblue}{HTML}{0284C7}   % Azul digital de acento
-\definecolor{darktext}{HTML}{1E293B}     % Texto principal oscuro
-\definecolor{lightgray}{HTML}{64748B}    % Fechas y detalles secundarios
-\definecolor{timelinegray}{HTML}{CBD5E1} % Línea divisoria
-\definecolor{orcidgreen}{HTML}{A6CE39}   % Verde oficial de ORCID
-\definecolor{white}{RGB}{255,255,255}
-
-% Logo vectorial nativo de ORCID
-\newcommand{\orcidicon}{%
-    \begin{tikzpicture}[baseline=-0.5ex]
-        \fill[orcidgreen] (0,0) circle (3.8pt);
-        \node[text=white, font=\fontsize{4pt}{4pt}\selectfont\bfseries] at (0,0) {iD};
-    \end{tikzpicture}%
-}
-
-\hypersetup{
-    colorlinks=true,
-    urlcolor=accentblue,
-    linkcolor=accentblue
-}
-
-\pagestyle{empty}
-\setlength{\parindent}{0pt}
-
-% Comandos para títulos de sección
-\newcommand{\maintitle}[1]{%
-    \vspace{3pt}%
-    {\bfseries\fontsize{8.8pt}{10.5pt}\selectfont\color{darktext}\uppercase{#1}}\\[-3pt]%
-    {\color{darktext}\rule{\linewidth}{1pt}}\par\vspace{2.5pt}%
-}
-
-% Badges estilo Hipster CV
-\newcommand{\sidebadge}[1]{%
-    \vspace{4pt}%
-    \begin{tikzpicture}
-        \node[fill=accentblue, text=white, font=\footnotesize\bfseries, inner sep=2.5pt, rounded corners=2pt] {#1};
-    \end{tikzpicture}\par\vspace{2pt}%
-}
-
-% Barras de habilidad
-\newcommand{\skillbar}[2]{%
-    \vspace{1.6pt}%
-    \begin{minipage}[c]{2.6cm}
-        {\fontsize{6.5pt}{8pt}\selectfont\bfseries\color{darktext} #1}
-    \end{minipage}%
-    \begin{tikzpicture}[baseline=0.2ex]
-        \fill[timelinegray!60] (0,0) rectangle (2.5cm, 0.13cm);
-        \fill[accentblue] (0,0) rectangle (#2*2.5cm/100, 0.13cm);
-    \end{tikzpicture}\par%
-}
-
-% Comando timeline que adapta la línea vertical a la altura exacta
-\newcommand{\timelineentry}[3]{%
-    \noindent
-    \begin{tikzpicture}[baseline=(entrycontent.north)]
-        \node[inner sep=0pt, outer sep=0pt, text width=12.2cm, align=left] (entrycontent) {
-            {\fontsize{8.6pt}{10.5pt}\selectfont\textbf{\color{darktext} #1}} \hfill {\scriptsize\color{lightgray} #2}\\[1.5pt]
-            #3
-        };
-        \draw[accentblue, line width=1.3pt] ([xshift=-7pt, yshift=-3.5pt]entrycontent.north west) -- ([xshift=-7pt, yshift=2pt]entrycontent.south west);
-        \fill[accentblue] ([xshift=-7pt, yshift=-3.5pt]entrycontent.north west) circle (2.4pt);
-    \end{tikzpicture}\par\vspace{4.5pt}
-}
-
-
-\usepackage{tikz}
-\usepackage{graphicx}
-
-% Define la URL fija
-\newcommand{\avatarurl}{https://media.licdn.com/dms/image/v2/D4D03AQGr6D7JQZfJGA/profile-displayphoto-crop_800_800/B4DZ5ZYsQaJQAM-/0/1779616106026?e=1790208000&v=beta&t=ChgQJ1kDRzcvgTQIMAsRWKyn3PoxO4kfjmERU9Ypu-0}
-
-% Descarga silenciosa mediante curl a un archivo temporal local
-% \immediate\write18{curl -s -L -k "\avatarurl" -o avatar_temp.jpg}
-
+\input{style.tex}
 
 \begin{document}
 
-% 1. BANNER Y ENCABEZADO INTEGRADO EN TIKZ
+% BANNER
 \begin{tikzpicture}[remember picture, overlay]
-    % Banner superior oscuro (3.4cm)
     \fill[headerbg] (current page.north west) rectangle ([yshift=-3.4cm]current page.north east);
-    
-    % Barra lateral izquierda
     \fill[sidebarbg] ([yshift=-3.4cm]current page.north west) rectangle ([xshift=6.7cm]current page.south west);
     \draw[timelinegray, line width=0.6pt] ([xshift=6.7cm, yshift=-3.4cm]current page.north west) -- ([xshift=6.7cm]current page.south west);
 
-    % Texto y enlaces alineados con iconos oficiales
     \node[anchor=center, text width=\paperwidth, align=center] at ([yshift=-1.7cm]current page.north) {
         {\fontsize{20pt}{22pt}\selectfont\textbf{\color{white} ARTURO OLIVARES MARTOS}}\\[4pt]
         {\fontsize{9pt}{11pt}\selectfont\textbf{\color{accentblue!40} INGENIERÍA INFORMÁTICA Y MATEMÁTICAS \enspace\textbar\enspace IA \& DATA SCIENCE}}\\[6pt]
@@ -115,32 +25,24 @@
 
 \vspace*{3.65cm}
 
-% 2. ESTRUCTURA A DOS COLUMNAS
-% --- COLUMNA LATERAL (Sidebar: 5.8cm) ---
 \begin{minipage}[t]{5.8cm}
-    \vspace{0pt}
-    \hspace{0.4cm}%
+    \vspace{0pt}\hspace{0.4cm}%
     \begin{minipage}[t]{5.2cm}
-        % Avatar circular más grande
         \begin{center}
             \begin{tikzpicture}
                 \begin{scope}
-                    % Aumentamos el radio a 1.3cm (diámetro = 2.6cm)
                     \clip (0,0) circle (1.3cm);
                     \node at (0,0) {\includegraphics[width=2.6cm, height=2.6cm, keepaspectratio=false]{avatar_temp.jpg}};
                 \end{scope}
-                % Borde circular ajustado al nuevo radio
                 \draw[accentblue, line width=2.5pt] (0,0) circle (1.3cm);
             \end{tikzpicture}
         \end{center}
         \vspace{-6pt}
 
-        % Perfil
         \sidebadge{SOBRE MÍ}
         {\fontsize{6.8pt}{8.6pt}\selectfont\color{darktext}
         Estudiante de alto rendimiento en UGR con estancia internacional Erasmus en Alemania. Especializado en la convergencia entre modelado matemático riguroso, algoritmia avanzada e ingeniería orientada a IA y MLOps. Trayectoria en investigación, liderazgo comunitario y resolución de problemas complejos.}\par
 
-        % Competencias técnicas estructuradas por áreas
         \sidebadge{COMPETENCIAS TÉCNICAS}
         {\fontsize{6.8pt}{8.8pt}\selectfont
         \textbf{\color{darktext} Lenguajes \& Frameworks:}\\
@@ -153,16 +55,12 @@
         {\color{lightgray} Git, GitHub, CI/CD, Docker, Google Cloud (GCP / MLOps)}
         }\par
 
-        
-
-        % Títulos oficiales de idiomas
         \sidebadge{TÍTULOS DE IDIOMAS}
         {\scriptsize\textbf{\color{darktext} Inglés:}} {\scriptsize\color{lightgray} C2 Proficiency (Cambridge)}\\[1.5pt]
         {\scriptsize\textbf{\color{darktext} Alemán:}} {\scriptsize\color{lightgray} B2 (Goethe-Zertifikat)}\\[1.5pt]
         {\scriptsize\textbf{\color{darktext} Francés:}} {\scriptsize\color{lightgray} B2 (DELF Internacional)}\\[1.5pt]
         {\scriptsize\textbf{\color{darktext} Español:}} {\scriptsize\color{lightgray} Nativo}
 
-        % Estancias de inmersión en el extranjero
         \sidebadge{INMERSIÓN EN EL EXTRANJERO}
         {\fontsize{6.6pt}{8.2pt}\selectfont
         \textbf{\color{darktext} Inmersión en Berlín (Alemania)}\\
@@ -175,7 +73,6 @@
         {\color{lightgray} d'Overbroeck's · Engineering Course (2018)}
         }\par
 
-        % Certificaciones técnicas
         \sidebadge{CERTIFICACIONES}
         {\fontsize{6.6pt}{8.2pt}\selectfont
         \textbf{\color{darktext} MLOps for Generative AI}\\
@@ -188,11 +85,9 @@
     \end{minipage}
 \end{minipage}%
 \hfill
-% --- COLUMNA PRINCIPAL (13.1cm) ---
 \begin{minipage}[t]{13.1cm}
     \vspace{0pt}
 
-    % EDUCACIÓN
     \maintitle{EDUCACIÓN Y RENDIMIENTO ACADÉMICO}
 
     \timelineentry{Doble Grado en Ing. Informática y Matemáticas}{2022 -- 2027}{%
@@ -223,11 +118,10 @@
 
     \vspace{3pt}
 
-    % LIDERAZGO Y COMUNIDAD DIGITAL
     \maintitle{LIDERAZGO Y COMUNIDAD DIGITAL}
 
     \timelineentry{Fundador y Coordinador Principal}{Sept. 2022 -- Actualidad}{%
-        {\footnotesize\textbf{\color{accentblue} Los Del DGIIM (Comunidad Oficial UGR)}} \hfill {\scriptsize\color{lightgray} Granada, España}\\[1.5pt]
+        {\footnotesize\textbf{\color{accentblue} Los Del DGIIM (Comunidad UGR)}} \hfill {\scriptsize\color{lightgray} Granada, España}\\[1.5pt]
         \begin{itemize}[leftmargin=*, nosep, topsep=1pt, itemsep=1.5pt]
             \item Fundación de la red comunitaria del Doble Grado; moderación de canales oficiales con cientos de alumnos.
             \item Administración de repositorios GitHub con código, apuntes y arquitecturas de uso masivo.
@@ -235,7 +129,6 @@
         \end{itemize}
     }
 
-    % INVESTIGACIÓN, CONGRESOS Y DIVULGACIÓN
     \maintitle{INVESTIGACIÓN, CONGRESOS Y DIVULGACIÓN}
 
     \begin{itemize}[leftmargin=*, nosep, topsep=1pt, itemsep=2pt]
@@ -250,7 +143,6 @@
         {\scriptsize Sesiones técnicas para docentes sobre aplicaciones reales de modelado matemático y simulación.}
     \end{itemize}
 
-    % PREMIOS Y RECONOCIMIENTOS
     \maintitle{PREMIOS Y MÉRITOS DESTACADOS}
 
     \begin{itemize}[leftmargin=*, nosep, topsep=1pt, itemsep=1.5pt]
@@ -261,7 +153,6 @@
         \item \textbf{\color{darktext}\footnotesize Accésit XXXIV Olimpiada Matemática THALES} \hfill {\scriptsize\color{lightgray} Abr. 2018}
     \end{itemize}
 
-    % IMPACTO SOCIAL Y VOLUNTARIADO
     \maintitle{COMPROMISO SOCIAL Y VOLUNTARIADO}
 
     \begin{itemize}[leftmargin=*, nosep, topsep=1pt, itemsep=1.5pt]

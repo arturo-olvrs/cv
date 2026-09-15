@@ -1,0 +1,63 @@
+\usepackage[utf8]{inputenc}
+\usepackage{helvet}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage[margin=0cm]{geometry}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usepackage{enumitem}
+\usepackage{hyperref}
+\usepackage{fontawesome5}
+\usepackage{graphicx}
+
+% Paleta de colores
+\definecolor{headerbg}{HTML}{161E2E}     
+\definecolor{sidebarbg}{HTML}{F8FAFC}    
+\definecolor{accentblue}{HTML}{0284C7}   
+\definecolor{darktext}{HTML}{1E293B}     
+\definecolor{lightgray}{HTML}{64748B}    
+\definecolor{timelinegray}{HTML}{CBD5E1} 
+\definecolor{orcidgreen}{HTML}{A6CE39}   
+\definecolor{white}{RGB}{255,255,255}
+
+% Icono ORCID
+\newcommand{\orcidicon}{%
+    \begin{tikzpicture}[baseline=-0.5ex]
+        \fill[orcidgreen] (0,0) circle (3.8pt);
+        \node[text=white, font=\fontsize{4pt}{4pt}\selectfont\bfseries] at (0,0) {iD};
+    \end{tikzpicture}%
+}
+
+\hypersetup{
+    colorlinks=true,
+    urlcolor=accentblue,
+    linkcolor=accentblue
+}
+
+\pagestyle{empty}
+\setlength{\parindent}{0pt}
+
+% Comandos visuales
+\newcommand{\maintitle}[1]{%
+    \vspace{3pt}%
+    {\bfseries\fontsize{8.8pt}{10.5pt}\selectfont\color{darktext}\uppercase{#1}}\\[-3pt]%
+    {\color{darktext}\rule{\linewidth}{1pt}}\par\vspace{2.5pt}%
+}
+
+\newcommand{\sidebadge}[1]{%
+    \vspace{4pt}%
+    \begin{tikzpicture}
+        \node[fill=accentblue, text=white, font=\footnotesize\bfseries, inner sep=2.5pt, rounded corners=2pt] {#1};
+    \end{tikzpicture}\par\vspace{2pt}%
+}
+
+\newcommand{\timelineentry}[3]{%
+    \noindent
+    \begin{tikzpicture}[baseline=(entrycontent.north)]
+        \node[inner sep=0pt, outer sep=0pt, text width=12.2cm, align=left] (entrycontent) {
+            {\fontsize{8.6pt}{10.5pt}\selectfont\textbf{\color{darktext} #1}} \hfill {\scriptsize\color{lightgray} #2}\\[1.5pt]
+            #3
+        };
+        \draw[accentblue, line width=1.3pt] ([xshift=-7pt, yshift=-3.5pt]entrycontent.north west) -- ([xshift=-7pt, yshift=2pt]entrycontent.south west);
+        \fill[accentblue] ([xshift=-7pt, yshift=-3.5pt]entrycontent.north west) circle (2.4pt);
+    \end{tikzpicture}\par\vspace{4.5pt}
+}
